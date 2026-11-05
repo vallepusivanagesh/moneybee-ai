@@ -26,9 +26,9 @@ def get_stock_data(ticker):
     history = stock.history(period="1y")
 
     if history.empty:
-        return None, None
+        return None
 
-    return history, stock
+    return history
 
 if st.button("Analyse Company"):
     if not symbol.strip():
@@ -38,7 +38,7 @@ if st.button("Analyse Company"):
 
         with st.spinner("Fetching stock market data..."):
             try:
-                history, stock = get_stock_data(ticker)
+                history = get_stock_data(ticker)
 
                 if history is None:
                     st.error("Stock data not found. Check the ticker.")
